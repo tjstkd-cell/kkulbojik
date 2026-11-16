@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='2.0.0' expr:dir='data:blog.languageDirection' lang='ko' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<b:include data='blog' name='all-head-content'/>
+<title><b:if cond='data:view.isHomepage'>오늘의 꿀보직 | 나에게 딱 맞는 꿀보직 찾기<b:else/><data:view.title.escaped/> | 오늘의 꿀보직</b:if></title>
+<b:if cond='data:view.isHomepage'><meta content='어려운 채용 정보는 이제 그만! 공공기관·공무원·공무직·어르신 일자리 채용공고를 매일 한눈에. 오늘 새 공고와 마감임박 공고를 확인하세요.' name='description'/></b:if>
+<meta content='#FFB300' name='theme-color'/>
+<link href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css' rel='stylesheet'/>
+<script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5692389775354146'/>
+<b:skin><![CDATA[
+:root{--honey:#FFB300;--honey-d:#E08E00;--honey-l:#FFF6D9;--ink:#1F1A12;--sub:#6B6255;--line:#EFE6D2;--red:#E5484D;--green:#2F9E44;--bg:#FFFCF5}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;word-break:keep-all}
+a{color:#B26F00}
+*,*:before,*:after{box-sizing:border-box}
+button{font-family:inherit;cursor:pointer}
+.kb-wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+/* 상단 고정: 로고 + 카테고리 탭 */
+.kb-head{position:sticky;top:0;z-index:50;background:rgba(255,252,245,.94);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+.kb-head.scrolled{border-bottom-color:var(--line);box-shadow:0 4px 14px rgba(120,80,0,.06)}
+.kb-headin{display:flex;align-items:center;justify-content:center;position:relative;padding:12px 0 8px}
+.kb-logo{display:inline-flex;align-items:center;gap:6px;font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--ink);text-decoration:none}
+.kb-logo span{font-size:24px}
+.kb-share{position:absolute;right:0;top:50%;transform:translateY(-40%);border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;color:var(--ink)}
+.kb-tabs{display:flex;gap:4px;background:#fff;border-radius:999px;padding:4px;box-shadow:0 4px 16px rgba(120,80,0,.08);margin-bottom:10px;overflow-x:auto;scrollbar-width:none}
+.kb-tabs::-webkit-scrollbar{display:none}
+.kb-tab{flex:1 0 auto;border:0;background:transparent;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:700;color:var(--sub);white-space:nowrap;transition:background .15s,color .15s}
+.kb-tab:hover{color:var(--ink)}
+.kb-tab.on{background:linear-gradient(135deg,#FFC93C,#FFA000);color:var(--ink);box-shadow:0 3px 10px rgba(255,160,0,.35)}
+
+/* 히어로 */
+.kb-hero{text-align:center;padding:26px 0 8px}
+.kb-badge{display:inline-block;background:var(--honey-l);color:#8A5A00;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+.kb-hero h1{margin:12px 0 4px;font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.3}
+.kb-hero h1 em{font-style:normal;color:var(--honey-d)}
+.kb-hero p{margin:0;color:var(--sub);font-size:15px}
+.kb-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:20px auto 0}
+.kb-stat{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 4px;color:var(--ink);transition:border-color .15s,transform .15s}
+.kb-stat:hover{transform:translateY(-2px)}
+.kb-stat.on{border-color:var(--ink)}
+.kb-stat strong{display:block;font-size:24px;font-weight:800;line-height:1.2}
+.kb-stat small{font-size:12px;color:var(--sub);font-weight:600}
+.kb-stat.kb-hot strong{color:var(--red)}
+.kb-stat.kb-new strong{color:var(--honey-d)}
+.kb-date{font-size:12px;color:var(--sub);margin-top:12px;font-weight:600}
+
+/* 검색·필터 박스 */
+.kb-filter{background:#fff;border:1.5px solid var(--ink);border-radius:18px;padding:14px;margin:22px auto 0;max-width:620px}
+.kb-search{display:flex;gap:8px}
+.kb-search input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font-size:15px;font-family:inherit;background:var(--bg);outline:none;color:var(--ink)}
+.kb-search input:focus{border-color:var(--honey)}
+.kb-search select{border:1.5px solid var(--line);border-radius:12px;padding:0 8px;font-size:14px;font-family:inherit;background:var(--bg);color:var(--ink);max-width:130px}
+.kb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.kb-chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:600;color:var(--sub)}
+.kb-chip.on{border-color:var(--honey);background:var(--honey-l);color:#8A5A00}
+
+/* 안내 박스 */
+.kb-info{background:#FFF8E6;border-left:4px solid var(--honey);border-radius:0 14px 14px 0;padding:14px 16px;margin:24px 0 0}
+.kb-info b{display:block;font-size:15px}
+.kb-info span{display:block;font-size:13px;color:var(--honey-d);font-weight:700;margin-top:2px}
+.kb-info p{margin:4px 0 0;font-size:13px;color:var(--sub)}
+
+.kb-bar{display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px;font-size:14px}
+.kb-bar b{color:var(--honey-d)}
+.kb-bar select{border:0;background:transparent;font-size:14px;font-weight:700;font-family:inherit;color:var(--ink)}
+
+/* 카드 그리드 */
+.kb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.kb-card{background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 14px rgba(120,80,0,.08);transition:transform .15s,box-shadow .15s}
+.kb-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(120,80,0,.14)}
+.kb-ch{position:relative;padding:18px 20px 16px;background:linear-gradient(135deg,#FFD54F,#FFB300);color:var(--ink)}
+.kb-ch.urgent{background:linear-gradient(135deg,#FF8A65,#E5484D);color:#fff}
+.kb-ch.senior{background:linear-gradient(135deg,#7BD389,#2F9E44);color:#fff}
+.kb-ch.urgent.senior{background:linear-gradient(135deg,#FF8A65,#E5484D)}
+.kb-dday{font-size:26px;font-weight:800;letter-spacing:-.5px;line-height:1.2}
+.kb-chsub{font-size:13px;font-weight:600;opacity:.85;margin-top:2px}
+.kb-new{display:inline-block;vertical-align:middle;margin-left:6px;font-size:11px;font-weight:800;background:#fff;color:var(--red);border-radius:6px;padding:2px 6px;letter-spacing:0}
+.kb-fav{position:absolute;right:12px;top:12px;width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.55);font-size:18px;line-height:36px;padding:0;color:rgba(31,26,18,.35)}
+.kb-fav.on{color:var(--red);background:#fff}
+.kb-cb{padding:16px 20px 20px;display:flex;flex-direction:column;flex:1}
+.kb-body{color:inherit !important;text-decoration:none;display:block;flex:1}
+.kb-inst{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.kb-title{font-size:14px;color:var(--sub);margin:4px 0 12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.kb-rows{background:#FFF8E6;border-radius:12px;padding:4px 14px}
+.kb-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;font-size:13px;border-bottom:1px dashed var(--line)}
+.kb-row:last-child{border-bottom:0}
+.kb-row span{color:var(--sub);flex:0 0 auto}
+.kb-row b{text-align:right;font-weight:700}
+.kb-cta{display:block;margin-top:14px;text-align:center;background:var(--ink);color:#FFD54F !important;text-decoration:none;border-radius:12px;padding:13px;font-size:15px;font-weight:800}
+.kb-cta:hover{background:#3A3122}
+.kb-cta.none{background:#EDE6D6;color:var(--sub) !important}
+
+/* 광고 */
+.kb-ad{background:#fff;border-radius:20px;box-shadow:0 2px 14px rgba(120,80,0,.08);padding:10px 10px 12px;display:flex;flex-direction:column;justify-content:center;min-height:300px;overflow:hidden}
+.kb-ad-top{min-height:0;border-radius:16px;margin-top:20px;box-shadow:none;border:1px solid var(--line)}
+.kb-adlabel{font-size:11px;color:#A79E8E;text-align:left;margin:0 0 4px 4px}
+.kb-ad ins{display:block;width:100%}
+
+.kb-more{display:block;width:100%;max-width:420px;margin:24px auto 0;border:1.5px solid var(--ink);background:#fff;border-radius:14px;padding:14px;font-size:15px;font-weight:800;color:var(--ink)}
+.kb-empty{grid-column:1/-1;text-align:center;padding:50px 10px;color:var(--sub);font-size:14px;background:#fff;border-radius:20px}
+.kb-foot{margin:36px 0 0;padding:18px 0 40px;font-size:12px;color:var(--sub);border-top:1px solid var(--line);text-align:center}
+.kb-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:99;white-space:nowrap}
+.kb-toast.show{opacity:1}
+.kb-top{position:fixed;right:16px;bottom:20px;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:#FFD54F;font-size:18px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.kb-top.show{opacity:1;pointer-events:auto}
+
+/* 글 페이지 */
+.kb-mini{background:rgba(255,252,245,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.kb-mini .kb-wrap{padding-top:12px;padding-bottom:12px;text-align:center}
+.kb-posts{max-width:760px;margin:0 auto;padding:16px}
+.kb-home{display:none}
+.kb-posts .post{background:#fff;border-radius:20px;box-shadow:0 2px 14px rgba(120,80,0,.08);padding:24px;margin-bottom:16px}
+.kb-posts .post-title{font-size:24px;line-height:1.4;margin:0 0 10px;letter-spacing:-.5px}
+.kb-posts .post-title a{color:var(--ink);text-decoration:none}
+.kb-posts .post-body{font-size:16px;line-height:1.8}
+.kb-posts .post-body img{max-width:100%;height:auto}
+.kb-posts .byline,.kb-posts .post-footer{font-size:13px;color:var(--sub)}
+
+/* 태블릿·모바일 */
+@media (max-width:720px){
+.kb-grid{grid-template-columns:1fr;gap:14px}
+.kb-hero h1{font-size:25px}
+.kb-ad{min-height:280px}
+}
+@media (max-width:480px){
+.kb-wrap{padding:0 12px}
+.kb-headin{justify-content:flex-start}
+.kb-logo{font-size:18px}
+.kb-tab{padding:9px 12px;font-size:13px}
+.kb-hero{padding-top:18px}
+.kb-hero h1{font-size:22px}
+.kb-hero p{font-size:14px}
+.kb-stats{gap:6px}
+.kb-stat strong{font-size:20px}
+.kb-stat small{font-size:11px}
+.kb-filter{padding:12px;border-radius:16px}
+.kb-search select{max-width:96px;font-size:13px}
+.kb-ch{padding:16px 16px 14px}
+.kb-dday{font-size:23px}
+.kb-cb{padding:14px 16px 16px}
+.kb-posts{padding:12px}
+.kb-posts .post{padding:18px}
+}
+]]></b:skin>
+</head>
+<body>
+<b:if cond='data:view.isHomepage'>
+<div id='kb-app'>
+  <header class='kb-head' id='kb-head'>
+    <div class='kb-wrap'>
+      <div class='kb-headin'>
+        <a class='kb-logo' href='/'><span>🍯</span>오늘의 꿀보직</a>
+        <button class='kb-share' id='kb-share' type='button'>🔗 공유</button>
+      </div>
+      <nav class='kb-tabs' id='kb-tabs'/>
+    </div>
+  </header>
+  <main class='kb-wrap'>
+    <section class='kb-hero'>
+      <span class='kb-badge' id='kb-badge'>매일 아침 업데이트 · 공공 채용공고</span>
+      <h1>나에게 딱 맞는 <em>꿀보직</em> 찾기</h1>
+      <p>어려운 채용 정보는 이제 그만! 오늘 열린 공고만 쉽게 모았어요</p>
+      <div class='kb-stats'>
+        <button class='kb-stat kb-new' data-quick='new' type='button'><strong id='kb-s-new'>-</strong><small>오늘 새 공고</small></button>
+        <button class='kb-stat kb-hot' data-quick='hot' type='button'><strong id='kb-s-hot'>-</strong><small>3일 내 마감</small></button>
+        <button class='kb-stat' data-quick='fav' type='button'><strong id='kb-s-fav'>0</strong><small>내 찜 ♥</small></button>
+      </div>
+      <div class='kb-date' id='kb-date'/>
+    </section>
+    <div class='kb-filter'>
+      <div class='kb-search'>
+        <input id='kb-q' placeholder='기관명·직무 검색 (예: 공단, 운전)' type='search'/>
+        <select id='kb-region'><option value=''>전체 지역</option></select>
+      </div>
+      <div class='kb-chips' id='kb-chips'/>
+    </div>
+    <div id='kb-adtop'/>
+    <div class='kb-info' id='kb-info'/>
+    <div class='kb-bar'>
+      <span>꿀보직 <b id='kb-count'>0</b>건</span>
+      <select id='kb-sort'>
+        <option value='deadline'>마감임박순</option>
+        <option value='latest'>최신등록순</option>
+        <option value='people'>모집인원 많은순</option>
+      </select>
+    </div>
+    <div class='kb-grid' id='kb-list'><div class='kb-empty'>🍯 꿀보직 모으는 중…</div></div>
+    <button class='kb-more' id='kb-more' style='display:none' type='button'>꿀보직 더보기</button>
+    <p class='kb-foot'>오늘의 꿀보직은 각 기관이 공개한 채용공고(공공데이터포털)를 모아 정리한 참고용 정보입니다.<br/>접수기간·지원자격은 바뀔 수 있으니 지원 전 꼭 원문 공고를 확인하세요.</p>
+  </main>
+  <button aria-label='맨 위로' class='kb-top' id='kb-top' type='button'>↑</button>
+  <div class='kb-toast' id='kb-toast'/>
+</div>
+<b:else/>
+<div class='kb-mini'><div class='kb-wrap'><a class='kb-logo' expr:href='data:blog.homepageUrl'><span>🍯</span>오늘의 꿀보직</a></div></div>
+</b:if>
+<div class='kb-posts'>
+<b:class cond='data:view.isHomepage' name='kb-home'/>
+<b:section id='main' showaddelement='no'>
+<b:widget id='Blog1' locked='true' title='블로그 게시물' type='Blog' version='2' visible='true'/>
+</b:section>
+</div>
+<script>//<![CDATA[
+(function(){
+var CFG={dataUrl:'https://tjstkd-cell.github.io/kkulbojik/data/jobs.json',pageSize:20,adClient:'ca-pub-5692389775354146',adSlot:'9986388039',adEvery:6,adMax:3};
+var root=document.getElementById('kb-app');if(!root)return;
+function q(s){return root.querySelector(s)}
+var T=new Date();T.setHours(0,0,0,0);
+function p2(n){return ('0'+n).slice(-2)}
+function ymd(d){return d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())}
+function pd(s){s=String(s||'');return new Date(+s.slice(0,4),+s.slice(4,6)-1,+s.slice(6,8))}
+function dd(s){return Math.round((pd(s)-T)/864e5)}
+function md(s){s=String(s||'');return s.length>=8?(+s.slice(4,6))+'.'+(+s.slice(6,8)):''}
+var ESC={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ESC[c]})}
+function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k));localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+var TABS=['전체','공공기관','공무원·공무직','어르신'];
+var TL={'어르신':'👴 어르신 일자리'};
+var INFO={
+'전체':['📌 오늘 열려 있는 모든 꿀보직','공공기관 · 공무원·공무직 · 어르신 일자리','마감이 가까운 순서로 보여드려요. 마음에 드는 공고는 ♥로 찜해두고 내일 다시 확인하세요.'],
+'공공기관':['🏢 공공기관 채용','공기업 · 준정부기관 · 기타공공기관','정규직부터 체험형 인턴까지, 공공기관이 직접 올린 채용공고예요.'],
+'공무원·공무직':['🏛️ 공무원 · 공무직 채용','국가·지방공무원 · 교육청 · 공무직','나라일터에 올라온 채용공고예요. 정부 서버 상황에 따라 잠시 비어 있을 수 있어요.'],
+'어르신':['👴 어르신 일자리','60세 이상 지원 가능 · 전국 노인 구인정보','한국노인인력개발원이 모은 어르신 구인정보예요. 지역을 골라 가까운 일자리를 찾아보세요.']};
+var TYPES=['정규직','무기계약직','비정규직','인턴','시간제'];
+var CAREERS=['신입','경력'];
+var HL={'정규직':'정직원','무기계약직':'오래 다닐 수 있는 일','비정규직':'기간 정해진 일','인턴':'체험·실습','계약직':'기간 정해진 일','시간제':'짧게 일하는 일','일당직':'하루 단위','행정지원인력':'공무직·기간제'};
+function hl(s){s=String(s||'').trim();return HL[s]?s+' ('+HL[s]+')':s}
+var favs=ls('kb_favs')||[];
+var st={tab:ls('kb_tab')||'전체',q:'',region:'',types:[],career:[],sort:'deadline',quick:'',shown:CFG.pageSize};
+if(TABS.indexOf(st.tab)<0)st.tab='전체';
+var ALL=[];
+function norm(list){return list.map(function(j){j.id=String(j.id||j.recrutPblntSn);j.cat=j.cat||'공공기관';return j}).filter(function(j){return j.pbancEndYmd&&dd(j.pbancEndYmd)>=0})}
+function toast(m){var t=q('#kb-toast');t.textContent=m;t.className='kb-toast show';clearTimeout(toast.t);toast.t=setTimeout(function(){t.className='kb-toast'},1800)}
+function has(s,v){return String(s||'').indexOf(v)>-1}
+function pass(j){
+if(st.tab!=='전체'&&j.cat!==st.tab)return false;
+if(st.region&&!has(j.workRgnNmLst,st.region))return false;
+if(st.types.length&&!st.types.some(function(t){return has(j.hireTypeNmLst,t)}))return false;
+if(st.career.length&&!st.career.some(function(t){return has(j.recrutSeNm,t)}))return false;
+if(st.quick==='new'&&j.pbancBgngYmd!==ymd(T))return false;
+if(st.quick==='hot'&&dd(j.pbancEndYmd)>3)return false;
+if(st.quick==='fav'&&favs.indexOf(j.id)<0)return false;
+if(st.q){var k=st.q.toLowerCase();if((j.instNm+' '+j.recrutPbancTtl+' '+(j.ncsCdNmLst||'')+' '+(j.area||'')).toLowerCase().indexOf(k)<0)return false}
+return true}
+var SORTS={deadline:function(a,b){return dd(a.pbancEndYmd)-dd(b.pbancEndYmd)},latest:function(a,b){return String(b.pbancBgngYmd).localeCompare(String(a.pbancBgngYmd))},people:function(a,b){return (b.recrutNope||0)-(a.recrutNope||0)}};
+function card(j){
+var d=dd(j.pbancEndYmd),isNew=dd(j.pbancBgngYmd)>=-1,fav=favs.indexOf(j.id)>-1;
+var dl=d===0?'오늘 마감':'마감 D-'+d;
+var sub=[];if(j.recrutNope)sub.push(j.recrutNope+'명 모집');if(j.recrutSeNm)sub.push(j.recrutSeNm);
+var href=j.srcUrl?esc(String(j.srcUrl).trim()):'';
+var tgt=href?' href="'+href+'" target="_blank" rel="noopener"':'';
+var rows=[['고용형태',hl(j.hireTypeNmLst)||'-'],['근무지역',j.area||j.workRgnNmLst||'전국'],['접수기간',(md(j.pbancBgngYmd)?md(j.pbancBgngYmd)+' ~ ':'~ ')+md(j.pbancEndYmd)]];
+return '<article class="kb-card"><div class="kb-ch'+(d<=3?' urgent':'')+(j.cat==='어르신'?' senior':'')+'">'+
+'<div class="kb-dday">'+dl+(isNew?'<span class="kb-new">NEW</span>':'')+'</div>'+
+'<div class="kb-chsub">'+esc(sub.join(' · ')||TL[j.cat]||j.cat)+'</div>'+
+'<button class="kb-fav'+(fav?' on':'')+'" data-fav="'+esc(j.id)+'" type="button" aria-label="찜하기">♥</button></div>'+
+'<div class="kb-cb"><a class="kb-body"'+tgt+'><div class="kb-inst">'+esc(j.instNm)+'</div><div class="kb-title">'+esc(j.recrutPbancTtl)+'</div>'+
+'<div class="kb-rows">'+rows.map(function(r){return '<div class="kb-row"><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>'}).join('')+'</div></a>'+
+(href?'<a class="kb-cta"'+tgt+'>공고 원문 보기 →</a>':'<span class="kb-cta none">원문 링크 준비 중</span>')+
+'</div></article>'}
+function adHtml(cls){return '<div class="kb-ad'+(cls?' '+cls:'')+'"><div class="kb-adlabel">광고</div><ins class="adsbygoogle" style="display:block" data-ad-client="'+CFG.adClient+'" data-ad-slot="'+CFG.adSlot+'" data-ad-format="'+(cls?'horizontal':'rectangle')+'" data-full-width-responsive="true"></ins></div>'}
+function fillAds(){[].forEach.call(root.querySelectorAll('ins.adsbygoogle'),function(el){if(el.getAttribute('data-kb'))return;el.setAttribute('data-kb','1');try{(window.adsbygoogle=window.adsbygoogle||[]).push({})}catch(e){}})}
+function render(){
+var list=ALL.filter(pass).sort(SORTS[st.sort]);
+q('#kb-count').textContent=list.length;
+q('#kb-s-new').textContent=ALL.filter(function(j){return j.pbancBgngYmd===ymd(T)}).length;
+q('#kb-s-hot').textContent=ALL.filter(function(j){return dd(j.pbancEndYmd)<=3}).length;
+q('#kb-s-fav').textContent=favs.filter(function(id){return ALL.some(function(j){return j.id===id})}).length;
+[].forEach.call(root.querySelectorAll('.kb-stat'),function(b){b.classList.toggle('on',b.getAttribute('data-quick')===st.quick)});
+var inf=INFO[st.tab]||INFO['전체'];
+q('#kb-info').innerHTML='<b>'+inf[0]+'</b><span>'+inf[1]+'</span><p>'+inf[2]+'</p>';
+var h=[],ads=0,shown=list.slice(0,st.shown);
+shown.forEach(function(j,i){h.push(card(j));if((i+1)%CFG.adEvery===0&&i<shown.length-1&&ads<CFG.adMax){h.push(adHtml());ads++}});
+q('#kb-list').innerHTML=list.length?h.join(''):'<div class="kb-empty">조건에 맞는 꿀보직이 아직 없어요 🐝<br/>필터를 바꿔보세요.</div>';
+q('#kb-more').style.display=list.length>st.shown?'block':'none';
+fillAds()}
+function more(){
+var list=ALL.filter(pass).sort(SORTS[st.sort]),from=st.shown;st.shown+=CFG.pageSize;
+var wrap=document.createElement('div');wrap.innerHTML=list.slice(from,st.shown).map(card).join('');
+while(wrap.firstChild)q('#kb-list').appendChild(wrap.firstChild);
+q('#kb-more').style.display=list.length>st.shown?'block':'none'}
+function chips(){
+q('#kb-chips').innerHTML=TYPES.map(function(t){return '<button class="kb-chip'+(st.types.indexOf(t)>-1?' on':'')+'" data-type="'+t+'" type="button">'+t+'</button>'}).join('')+
+CAREERS.map(function(t){return '<button class="kb-chip'+(st.career.indexOf(t)>-1?' on':'')+'" data-career="'+t+'" type="button">'+t+'</button>'}).join('');
+q('#kb-tabs').innerHTML=TABS.map(function(t){return '<button class="kb-tab'+(st.tab===t?' on':'')+'" data-tab="'+t+'" type="button">'+(TL[t]||t)+'</button>'}).join('')}
+function toggle(arr,v){var i=arr.indexOf(v);i>-1?arr.splice(i,1):arr.push(v)}
+function toList(){var y=q('#kb-info').getBoundingClientRect().top+window.pageYOffset-q('#kb-head').offsetHeight-8;if(window.pageYOffset>y)window.scrollTo({top:y,behavior:'smooth'})}
+root.addEventListener('click',function(e){
+var b=e.target.closest('button');if(!b)return;
+if(b.dataset.tab){st.tab=b.dataset.tab;ls('kb_tab',st.tab);st.shown=CFG.pageSize;chips();render();toList();return}
+else if(b.dataset.type)toggle(st.types,b.dataset.type);
+else if(b.dataset.career)toggle(st.career,b.dataset.career);
+else if(b.dataset.quick)st.quick=st.quick===b.dataset.quick?'':b.dataset.quick;
+else if(b.dataset.fav){var id=b.dataset.fav;toggle(favs,id);ls('kb_favs',favs);b.classList.toggle('on',favs.indexOf(id)>-1);q('#kb-s-fav').textContent=favs.length;toast(favs.indexOf(id)>-1?'찜했어요 ♥ 내일 또 확인하세요':'찜을 해제했어요');return}
+else if(b.id==='kb-more'){more();return}
+else if(b.id==='kb-top'){window.scrollTo({top:0,behavior:'smooth'});return}
+else if(b.id==='kb-share'){var u=location.origin+'/';if(navigator.share){navigator.share({title:'오늘의 꿀보직',text:'나에게 딱 맞는 꿀보직 찾기',url:u}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){toast('링크를 복사했어요')})}return}
+else return;
+st.shown=CFG.pageSize;chips();render()});
+var qt;q('#kb-q').addEventListener('input',function(){var v=this.value.trim();clearTimeout(qt);qt=setTimeout(function(){st.q=v;st.shown=CFG.pageSize;render()},250)});
+q('#kb-region').addEventListener('change',function(){st.region=this.value;st.shown=CFG.pageSize;render()});
+q('#kb-sort').addEventListener('change',function(){st.sort=this.value;st.shown=CFG.pageSize;render()});
+var head=q('#kb-head'),topb=q('#kb-top');
+window.addEventListener('scroll',function(){var y=window.pageYOffset;head.classList.toggle('scrolled',y>10);topb.classList.toggle('show',y>800)},{passive:true});
+var W=['일','월','화','수','목','금','토'];
+var dateTxt='📅 '+T.getFullYear()+'년 '+(T.getMonth()+1)+'월 '+T.getDate()+'일('+W[T.getDay()]+') 기준';
+q('#kb-date').textContent=dateTxt;
+q('#kb-adtop').innerHTML=adHtml('kb-ad-top');
+function start(o){
+ALL=norm(o.result||o);
+if(o.generated_at)q('#kb-date').textContent=dateTxt+' · 최근 업데이트 '+String(o.generated_at).slice(5);
+var rg={};ALL.forEach(function(j){String(j.workRgnNmLst||'').split(',').forEach(function(r){r=r.trim();if(r)rg[r]=1})});
+q('#kb-region').innerHTML='<option value="">전체 지역</option>'+Object.keys(rg).sort().map(function(r){return '<option>'+esc(r)+'</option>'}).join('');
+chips();render()}
+chips();
+fetch(CFG.dataUrl,{cache:'no-cache'}).then(function(r){return r.json()}).then(start).catch(function(){q('#kb-list').innerHTML='<div class="kb-empty">공고를 불러오지 못했어요 🐝<br/>잠시 후 새로고침해 주세요.</div>';fillAds()});
+})();
+//]]></script>
+</body>
+</html>
